@@ -2,6 +2,7 @@ package main
 
 import (
 	"certificat-go/cert"
+	"certificat-go/csv"
 	"certificat-go/html"
 	"certificat-go/pdf"
 
@@ -11,6 +12,7 @@ import (
 )
 
 func main() {
+	file := flag.String("file", "","CSV file input")
 	outputType := flag.String("type", "pdf", "Output type of the certificate.")
 	flag.Parse()
 
@@ -28,13 +30,19 @@ func main() {
 
 	if err != nil {
 		fmt.Printf("Error, could not generate: %v", err)
-	}
-
-	c, err := cert.New("Golang programming", "Bob Lennon", "2021-11-10")
-	if err != nil {
-		fmt.Printf("Error during certificate creation :%v", err)
 		os.Exit(1)
 	}
 
-	saver.Save(*c)
+	
+	certs, err := csv.ParseCSV(*file)
+	if err != nil {
+		fmt.Printf("Could not parse csv file %v", err)
+		os.Exit(1)
+	}
+	for _, c :=range certs {
+		err = saver.Save(*c)
+		if err != nil {
+			fmt.Printf("Could not save cert. got %v\n", err)
+		}
+	}
 }
