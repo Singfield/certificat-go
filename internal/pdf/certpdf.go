@@ -1,7 +1,7 @@
 package pdf
 
 import (
-	"certificat-go/cert"
+	"certificat-go/internal/cert"
 	"fmt"
 	"os"
 	"path"
@@ -84,7 +84,7 @@ func background(pdf *gofpdf.Fpdf) {
 
 	pageWidth, pageHeight := pdf.GetPageSize()
 
-	pdf.ImageOptions("img/background.png",
+	pdf.ImageOptions("assets/img/background.png",
 		0, 0,
 		pageWidth, pageHeight,
 		false, opts, 0, "",
@@ -99,7 +99,7 @@ func header(pdf *gofpdf.Fpdf, c *cert.Cert) {
 	margin := 30.0
 	x := 0.0
 	imageWidth := 30.0
-	fileName := "img/gopher.png"
+	fileName := "assets/img/gopher.png"
 	pdf.ImageOptions(fileName,
 		x+margin, 20,
 		imageWidth, 0,
@@ -124,7 +124,7 @@ func footer(pdf *gofpdf.Fpdf) {
 	}
 
 	imageWidth :=50.0
-	fileName :="img/stamp.png"
+	fileName :="assets/img/stamp.png"
 	pageWidth, pageHeight := pdf.GetPageSize()
 	x := pageWidth - imageWidth -60.0
 	y := pageHeight - imageWidth -20.5

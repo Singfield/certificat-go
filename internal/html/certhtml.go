@@ -1,7 +1,7 @@
 package html
 
 import (
-	"certificat-go/cert"
+	"certificat-go/internal/cert"
 	"fmt"
 	"html/template"
 	"os"

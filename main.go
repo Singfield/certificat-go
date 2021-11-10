@@ -1,10 +1,10 @@
 package main
 
 import (
-	"certificat-go/cert"
-	"certificat-go/csv"
-	"certificat-go/html"
-	"certificat-go/pdf"
+	"certificat-go/internal/cert"
+	"certificat-go/internal/csv"
+	"certificat-go/internal/html"
+	"certificat-go/internal/pdf"
 
 	"flag"
 	"fmt"
